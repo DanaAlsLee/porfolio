@@ -738,7 +738,32 @@ footer {
   white-space: nowrap;
   box-shadow: 0 4px 12px rgba(42,191,170,0.3);
 }
+/* --- Ajuste responsivo del hero en escritorio --- */
+@media (min-width: 992px) {
+  .hero {
+    flex-direction: row;    /* Contenido a la izquierda, foto a la derecha */
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 64px;
+  }
 
+  .hero-content {
+    text-align: left;
+  }
+
+  .hero-photo-wrap {
+    margin-top: 0;
+  }
+
+  .hero-stats {
+    position: absolute;     /* Flota a la derecha */
+    right: 64px;
+    top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 </style>
 </head>
 <body>
