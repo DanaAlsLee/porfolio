@@ -191,6 +191,87 @@ nav {
 }
 .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
 
+/* ── FLIP CARD ── */
+.flip-card {
+  width: 200px;
+  height: 200px;
+  perspective: 800px;
+  cursor: pointer;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 50%;
+}
+.flip-card-front { z-index: 2; }
+.flip-card-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, var(--navy) 0%, #0F1A30 100%);
+  border: 3px solid var(--teal);
+  box-shadow: 0 0 0 1px rgba(42,191,170,0.2), 0 0 32px rgba(42,191,170,0.15), 0 24px 64px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 20px;
+  text-align: center;
+}
+.flip-icon {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+.flip-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+}
+.flip-age {
+  background: rgba(42,191,170,0.15);
+  border: 1px solid rgba(42,191,170,0.3);
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'DM Mono', monospace;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-top: 2px;
+}
+.flip-location {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  font-family: 'DM Mono', monospace;
+  margin-top: 2px;
+}
+
+/* Responsive flip card */
+@media (max-width: 768px) {
+  .flip-card { width: 140px; height: 140px; }
+  .flip-name { font-size: 13px; }
+  .flip-age  { font-size: 10px; }
+  .flip-location { font-size: 10px; }
+  .flip-icon { font-size: 22px; }
+}
+@media (max-width: 420px) {
+  .flip-card { width: 120px; height: 120px; }
+  .flip-name { font-size: 11px; }
+}
+
 /* ── FOTO PERFIL ── */
 .hero-photo-wrap {
   animation: fadeLeft 0.8s 0.4s ease both;
@@ -919,8 +1000,12 @@ footer {
     <div class="hero-right">
       <!-- FOTO — order:1 en mobile -->
       <div class="hero-photo-wrap">
-        <div class="hero-photo-ring">
-          <img class="hero-photo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gJESUNDX1BST0ZJTEUAAQEAAAI0AAAAAAAAAABtbnRyUkdC
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <!-- FRENTE: foto -->
+            <div class="flip-card-front">
+              <div class="hero-photo-ring">
+                <img class="hero-photo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gJESUNDX1BST0ZJTEUAAQEAAAI0AAAAAAAAAABtbnRyUkdC
 IFhZWiAH3gAGAAQAEQArADhhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA9tYAAQAA
 AADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApk
 ZXNjAAAA/AAAAHlia3B0AAABeAAAABR3dHB0AAABjAAAABRjcHJ0AAABoAAAABVyWFlaAAABuAAA
@@ -1937,7 +2022,16 @@ VnMcpY3hSI5/hdQxH55/OiigZ7gx+Wo1Y75F+h/SiipfQaIyoiU7ByTyT1NVo+SxNFFUIsqPlFOH
 SiigBjHikBoooAjJ5NRMSRz60UUAVrk4WvO/FLHfj2P9aKKZSPnj4kqCZgfQ/wBK8toooJluXLQf
 uG+tWf4RRRSASnxcsKKKAIu5+tKOTRRTAevWrEPWiigD0v4H38tj8TvDskJ5e5WFvdXyp/Q19zCi
 ikhMWiiimI//2Q==" alt="Dana Alsina Lee">
-          <div class="hero-photo-badge">📊 Data Analyst</div>
+                <div class="hero-photo-badge">📊 Data Analyst</div>
+              </div>
+            </div>
+            <!-- DORSO: info personal -->
+            <div class="flip-card-back">
+              <div class="flip-name">Dana Alsina Lee</div>
+              <div class="flip-age">33 años</div>
+              <div class="flip-location">📍 Buenos Aires, Argentina</div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- STATS — order:3 en mobile (van DESPUÉS del texto) -->
