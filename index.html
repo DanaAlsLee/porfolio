@@ -780,6 +780,62 @@ footer {
   max-width: 280px;     /* Controla el tamaño de la foto */
   max-height: 280px;
 }
+  /* --- Ordenar bloques del hero --- */
+.hero {
+  display: flex;
+  flex-direction: column; /* Siempre en columna por defecto */
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.hero-content {
+  order: 1;   /* Texto primero */
+  max-width: 520px;
+  text-align: center;
+}
+
+.hero-photo-wrap {
+  order: 2;   /* Foto en el medio */
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-ctas {
+  order: 3;   /* Botones debajo de la foto */
+  margin-top: 20px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-stats {
+  order: 4;   /* Stats al final */
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* En pantallas grandes: se puede alinear mejor */
+@media (min-width: 992px) {
+  .hero {
+    flex-direction: column; /* Mantener columna para evitar superposición */
+    padding: 80px 64px;
+  }
+
+  .hero-content {
+    text-align: center; /* Centrado también en desktop */
+  }
+
+  .hero-photo-ring {
+    max-width: 280px;
+    max-height: 280px;
+  }
+}
 }
 </style>
 </head>
