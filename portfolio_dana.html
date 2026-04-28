@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dana Alsina Lee · Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1B2A4A;
+  --navy-deep: #0F1A30;
+  --teal: #2ABFAA;
+  --teal-light: #E8F8F6;
+  --teal-mid: rgba(42,191,170,0.15);
+  --white: #FFFFFF;
+  --off-white: #F7F9FC;
+  --gray: #6B7A8D;
+  --gray-light: #E4EAF0;
+  --green: #27AE60;
+  --amber: #F39C12;
+  --text: #1B2A4A;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--off-white);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--off-white); }
+::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 3px; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(27,42,74,0.97);
+  backdrop-filter: blur(12px);
+  padding: 0 48px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid rgba(42,191,170,0.2);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--white);
+  letter-spacing: -0.5px;
+}
+.nav-logo span { color: var(--teal); }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--teal); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--navy-deep);
+  position: relative;
+  display: flex; align-items: center;
+  overflow: hidden;
+  padding: 0 64px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(42,191,170,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(27,42,74,0.8) 0%, transparent 70%);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(42,191,170,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42,191,170,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-content { position: relative; z-index: 2; max-width: 700px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal-mid);
+  border: 1px solid rgba(42,191,170,0.3);
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+  font-family: 'DM Mono', monospace;
+  animation: fadeUp 0.6s ease both;
+}
+.hero-tag::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--teal); border-radius: 50%;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(52px, 7vw, 80px);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -2px;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+.hero h1 span { color: var(--teal); }
+.hero-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.55);
+  margin: 20px 0 40px;
+  line-height: 1.6;
+  font-weight: 300;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+.hero-sub strong { color: var(--teal); font-weight: 500; }
+.hero-ctas {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+.btn-primary {
+  background: var(--teal);
+  color: var(--navy-deep);
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+.btn-primary:hover { background: #22a899; transform: translateY(-2px); }
+.btn-outline {
+  border: 1px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.8);
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+.hero-stats {
+  position: absolute; right: 64px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 20px;
+  animation: fadeLeft 0.8s 0.4s ease both;
+  z-index: 2;
+}
+.stat-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 24px 28px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  min-width: 160px;
+  transition: transform 0.2s;
+}
+.stat-card:hover { transform: translateX(-4px); border-color: rgba(42,191,170,0.3); }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: var(--teal);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 6px;
+  font-family: 'DM Mono', monospace;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── SECTIONS ── */
+section { padding: 100px 64px; }
+.section-tag {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+.section-sub {
+  font-size: 16px;
+  color: var(--gray);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+/* ── SOBRE MÍ ── */
+.about { background: var(--white); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-top: 60px;
+}
+.about-text p {
+  font-size: 16px;
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.about-text p strong { color: var(--navy); font-weight: 600; }
+.about-highlight {
+  background: var(--teal-light);
+  border-left: 4px solid var(--teal);
+  padding: 20px 24px;
+  border-radius: 0 12px 12px 0;
+  margin-top: 28px;
+  font-size: 15px;
+  color: var(--navy);
+  font-style: italic;
+  line-height: 1.7;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.skill-group {
+  background: var(--off-white);
+  border: 1px solid var(--gray-light);
+  border-radius: 16px;
+  padding: 20px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.skill-group:hover { transform: translateY(-3px); border-color: var(--teal); }
+.skill-group h4 {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 12px;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-tag {
+  background: var(--white);
+  border: 1px solid var(--gray-light);
+  color: var(--navy);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* ── KPI STRIP ── */
+.kpi-strip {
+  background: var(--navy);
+  padding: 60px 64px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--navy);
+}
+.kpi-item {
+  background: var(--navy);
+  padding: 40px 32px;
+  text-align: center;
+  position: relative;
+  transition: background 0.2s;
+}
+.kpi-item:hover { background: rgba(42,191,170,0.06); }
+.kpi-item::after {
+  content: '';
+  position: absolute; right: 0; top: 20%; bottom: 20%;
+  width: 1px;
+  background: rgba(255,255,255,0.08);
+}
+.kpi-item:last-child::after { display: none; }
+.kpi-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  font-weight: 900;
+  color: var(--teal);
+  line-height: 1;
+}
+.kpi-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 10px;
+  font-family: 'DM Mono', monospace;
+}
+.kpi-delta {
+  font-size: 12px;
+  color: var(--green);
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* ── EXPERIENCIA ── */
+.experience { background: var(--off-white); }
+.exp-timeline { margin-top: 60px; position: relative; }
+.exp-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--teal), transparent);
+}
+.exp-item {
+  padding: 0 0 48px 40px;
+  position: relative;
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: all 0.5s ease;
+}
+.exp-item.visible { opacity: 1; transform: translateX(0); }
+.exp-dot {
+  position: absolute;
+  left: -5px; top: 6px;
+  width: 12px; height: 12px;
+  background: var(--teal);
+  border-radius: 50%;
+  border: 2px solid var(--off-white);
+  box-shadow: 0 0 0 3px rgba(42,191,170,0.2);
+}
+.exp-period {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--teal);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.exp-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.5px;
+}
+.exp-company {
+  font-size: 13px;
+  color: var(--gray);
+  margin: 4px 0 16px;
+  font-weight: 500;
+}
+.exp-bullets { list-style: none; }
+.exp-bullets li {
+  font-size: 14px;
+  color: var(--gray);
+  padding: 5px 0 5px 18px;
+  position: relative;
+  line-height: 1.6;
+}
+.exp-bullets li::before {
+  content: '→';
+  position: absolute; left: 0;
+  color: var(--teal);
+  font-size: 12px;
+}
+.exp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(39,174,96,0.1);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-top: 12px;
+}
+
+/* ── PROYECTOS ── */
+.projects { background: var(--white); }
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 60px;
+}
+.project-card {
+  background: var(--off-white);
+  border: 1px solid var(--gray-light);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(27,42,74,0.12);
+}
+.project-card.featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+}
+.project-visual {
+  background: var(--navy);
+  min-height: 220px;
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+}
+.project-card.featured .project-visual { min-height: auto; }
+
+/* MINI DASHBOARD EN SVG */
+.mini-dash {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.dash-header {
+  background: rgba(42,191,170,0.15);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.dash-header-text { font-size: 9px; color: var(--teal); font-family: 'DM Mono', monospace; font-weight: 600; }
+.dash-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.dash-kpi {
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 8px;
+  text-align: center;
+}
+.dash-kpi-val { font-size: 14px; font-weight: 700; color: var(--teal); font-family: 'DM Mono', monospace; }
+.dash-kpi-lbl { font-size: 7px; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-top: 2px; }
+.dash-chart { flex: 1; background: rgba(255,255,255,0.03); border-radius: 8px; padding: 10px 12px; }
+.chart-bars { display: flex; align-items: flex-end; gap: 5px; height: 60px; }
+.bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; }
+.bar { width: 100%; border-radius: 3px 3px 0 0; transition: height 0.5s ease; }
+.bar.b1 { background: rgba(107,122,141,0.6); }
+.bar.b2 { background: var(--teal); }
+.bar-m { font-size: 7px; color: rgba(255,255,255,0.3); font-family: 'DM Mono', monospace; }
+
+.project-info { padding: 28px; }
+.project-tag {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: var(--teal-light);
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+.project-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+.project-desc {
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.project-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+.stack-tag {
+  background: var(--navy);
+  color: rgba(255,255,255,0.7);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-family: 'DM Mono', monospace;
+}
+.project-metrics { display: flex; gap: 20px; }
+.metric { text-align: center; }
+.metric-val { font-size: 20px; font-weight: 700; color: var(--teal); font-family: 'Playfair Display', serif; }
+.metric-lbl { font-size: 9px; color: var(--gray); text-transform: uppercase; letter-spacing: 0.8px; font-family: 'DM Mono', monospace; margin-top: 2px; }
+
+/* DASHBOARD VISUAL */
+.dashboard-section { background: var(--navy-deep); padding: 80px 64px; }
+.dashboard-section .section-title { color: var(--white); }
+.dashboard-section .section-sub { color: rgba(255,255,255,0.5); }
+.dashboard-container {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 48px;
+}
+.dash-top-bar {
+  background: var(--navy);
+  padding: 16px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.dash-title-bar { font-size: 13px; font-weight: 600; color: var(--white); font-family: 'DM Sans', sans-serif; }
+.dash-filters { display: flex; gap: 8px; }
+.dash-filter {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6);
+  font-size: 10px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: 'DM Mono', monospace;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.dash-filter.active, .dash-filter:hover { background: var(--teal-mid); border-color: var(--teal); color: var(--teal); }
+.dash-body { padding: 24px; }
+.dash-kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+.full-kpi-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.full-kpi-card:hover { border-color: rgba(42,191,170,0.3); }
+.full-kpi-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--teal);
+}
+.fkpi-label { font-size: 9px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; font-family: 'DM Mono', monospace; margin-bottom: 8px; }
+.fkpi-value { font-size: 28px; font-weight: 700; color: var(--white); font-family: 'DM Mono', monospace; line-height: 1; }
+.fkpi-delta { font-size: 11px; color: var(--green); margin-top: 6px; font-weight: 500; }
+.dash-charts-row { display: grid; grid-template-columns: 1.6fr 1fr; gap: 14px; margin-bottom: 14px; }
+.dash-chart-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 18px;
+}
+.dcc-title { font-size: 10px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; font-family: 'DM Mono', monospace; margin-bottom: 16px; }
+.bar-chart-full { display: flex; align-items: flex-end; gap: 8px; height: 100px; }
+.bcf-group { flex: 1; display: flex; gap: 2px; align-items: flex-end; flex-direction: column; }
+.bcf-bars { display: flex; gap: 2px; align-items: flex-end; width: 100%; }
+.bcf-bar { flex: 1; border-radius: 3px 3px 0 0; }
+.bcf-label { font-size: 8px; color: rgba(255,255,255,0.3); font-family: 'DM Mono', monospace; margin-top: 5px; text-align: center; width: 100%; }
+.donut-wrap-full { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.donut-legend-full { width: 100%; }
+.dl-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.dl-left { display: flex; align-items: center; gap: 8px; font-size: 11px; color: rgba(255,255,255,0.6); }
+.dl-dot { width: 8px; height: 8px; border-radius: 50%; }
+.dl-val { font-size: 11px; color: var(--white); font-weight: 600; font-family: 'DM Mono', monospace; }
+.dash-bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.progress-list-full { display: flex; flex-direction: column; gap: 10px; }
+.pf-item {}
+.pf-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.pf-name { font-size: 11px; color: rgba(255,255,255,0.7); }
+.pf-pct { font-size: 10px; color: var(--teal); font-family: 'DM Mono', monospace; }
+.pf-track { height: 4px; background: rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; }
+.pf-fill { height: 100%; background: var(--teal); border-radius: 10px; transition: width 1s ease; }
+.mini-table-full { width: 100%; font-size: 11px; border-collapse: collapse; }
+.mini-table-full th { text-align: left; color: rgba(255,255,255,0.3); font-size: 9px; text-transform: uppercase; letter-spacing: 0.8px; padding: 0 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.06); font-family: 'DM Mono', monospace; font-weight: 400; }
+.mini-table-full td { padding: 7px 6px; border-bottom: 1px solid rgba(255,255,255,0.04); color: rgba(255,255,255,0.75); }
+.status { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; }
+.status-dot2 { width: 5px; height: 5px; border-radius: 50%; }
+
+/* ── EDUCACIÓN ── */
+.education { background: var(--off-white); }
+.edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 60px; }
+.edu-card {
+  background: var(--white);
+  border: 1px solid var(--gray-light);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex; gap: 16px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.edu-card:hover { transform: translateY(-3px); border-color: var(--teal); }
+.edu-icon {
+  width: 48px; height: 48px;
+  background: var(--teal-light);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.edu-year {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--teal);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.edu-title { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+.edu-inst { font-size: 12px; color: var(--gray); }
+.edu-status {
+  display: inline-block;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+.status-active { background: rgba(42,191,170,0.1); color: var(--teal); }
+.status-done { background: rgba(39,174,96,0.1); color: var(--green); }
+
+/* ── CONTACTO ── */
+.contact {
+  background: var(--navy);
+  text-align: center;
+  padding: 100px 64px;
+}
+.contact .section-title { color: var(--white); }
+.contact .section-sub { color: rgba(255,255,255,0.5); margin: 0 auto 48px; }
+.contact-cards { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.contact-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 24px 32px;
+  min-width: 200px;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.contact-card:hover { border-color: var(--teal); background: var(--teal-mid); transform: translateY(-3px); }
+.cc-icon { font-size: 28px; margin-bottom: 10px; }
+.cc-label { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; font-family: 'DM Mono', monospace; margin-bottom: 6px; }
+.cc-value { font-size: 14px; color: var(--white); font-weight: 500; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy-deep);
+  text-align: center;
+  padding: 24px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  font-family: 'DM Mono', monospace;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 28px 60px; flex-direction: column; }
+  .hero-stats { position: static; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; margin-top: 40px; }
+  section { padding: 60px 28px; }
+  .about-grid, .projects-grid, .project-card.featured,
+  .dash-kpi-row, .dash-charts-row, .dash-bottom-row,
+  .edu-grid, .kpi-strip { grid-template-columns: 1fr; }
+  .project-card.featured { display: block; }
+  .kpi-item::after { display: none; }
+  .dashboard-section { padding: 60px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Dana <span>Alsina Lee</span></div>
+  <div class="nav-links">
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#experiencia">Experiencia</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#educacion">Formación</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Disponible para nuevas oportunidades</div>
+    <h1>Dana<br><span>Alsina Lee</span></h1>
+    <p class="hero-sub">
+      <strong>Supervisora de Ventas</strong> · <strong>Analista de Datos</strong> con enfoque comercial.<br>
+      Transformo datos en decisiones de negocio concretas.
+    </p>
+    <div class="hero-ctas">
+      <a href="#proyectos" class="btn-primary">Ver proyectos →</a>
+      <a href="#contacto" class="btn-outline">Contactarme</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-num">4+</div>
+      <div class="stat-label">Años de exp.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">+20%</div>
+      <div class="stat-label">Ventas Q2</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">-30%</div>
+      <div class="stat-label">Incumplimientos</div>
+    </div>
+  </div>
+</section>
+
+<!-- KPI STRIP -->
+<div class="kpi-strip">
+  <div class="kpi-item">
+    <div class="kpi-value">SQL</div>
+    <div class="kpi-label">Consultas avanzadas</div>
+    <div class="kpi-delta">↑ Power Query · DAX</div>
+  </div>
+  <div class="kpi-item">
+    <div class="kpi-value">BI</div>
+    <div class="kpi-label">Power BI · Dashboards</div>
+    <div class="kpi-delta">↑ Reportes en tiempo real</div>
+  </div>
+  <div class="kpi-item">
+    <div class="kpi-value">Py</div>
+    <div class="kpi-label">Python · Data Science</div>
+    <div class="kpi-delta">↑ En curso @ Humai</div>
+  </div>
+  <div class="kpi-item">
+    <div class="kpi-value">XL</div>
+    <div class="kpi-label">Excel · Google Sheets</div>
+    <div class="kpi-delta">↑ Nivel avanzado</div>
+  </div>
+</div>
+
+<!-- SOBRE MÍ -->
+<section class="about" id="sobre-mi">
+  <div class="section-tag">// 01 · Sobre mí</div>
+  <h2 class="section-title">Datos + negocio.<br>Un perfil híbrido.</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Soy <strong>Supervisora de Ventas y Analista de Datos</strong> con más de 4 años de experiencia gestionando equipos comerciales, carteras de cuentas y métricas de negocio en entornos de alta demanda.</p>
+      <p>Mi diferencial es la combinación: entiendo el negocio desde adentro porque lo viví en ventas, y puedo analizarlo con datos porque es mi herramienta de trabajo diaria. <strong>No necesito que otro equipo me traduzca los números</strong> — yo los leo, los visualizo y los convierto en decisiones.</p>
+      <p>Actualmente cursando <strong>Data Science con Python en Humai</strong>, sumando modelado predictivo y estadística aplicada a mi base en SQL, Power BI y Power Query.</p>
+      <div class="about-highlight">
+        "Me motiva resolver problemas, encontrar patrones en los datos y transformar información en acciones concretas que generen impacto real en el negocio."
+      </div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Datos & BI</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Power Query</span>
+          <span class="skill-tag">DAX</span>
+          <span class="skill-tag">Lenguaje M</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Programación</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">GitHub</span>
+          <span class="skill-tag">Automatización</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Herramientas</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Excel Avanzado</span>
+          <span class="skill-tag">Google Sheets</span>
+          <span class="skill-tag">Jira</span>
+          <span class="skill-tag">Trello</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Metodologías</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Scrum</span>
+          <span class="skill-tag">Agile</span>
+          <span class="skill-tag">KPIs</span>
+          <span class="skill-tag">Reporting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section class="experience" id="experiencia">
+  <div class="section-tag">// 02 · Experiencia</div>
+  <h2 class="section-title">Trayectoria profesional</h2>
+  <p class="section-sub">Más de 4 años combinando liderazgo comercial con análisis de datos en entornos financieros y de servicios.</p>
+  <div class="exp-timeline">
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-period">Septiembre 2022 – Actualidad</div>
+      <div class="exp-title">Supervisora Comercial & Analista de Datos</div>
+      <div class="exp-company">Gestión y Procesos S.A. · Buenos Aires · Remoto</div>
+      <ul class="exp-bullets">
+        <li>Lideré equipo comercial con seguimiento continuo de métricas y análisis de comportamiento de ventas.</li>
+        <li>Diseñé dashboards en Power BI que centralizaron información y redujeron tiempos de reporte.</li>
+        <li>Logré +20% en ventas en Q2 mediante estrategias basadas en análisis de datos históricos.</li>
+        <li>Actué como nexo entre equipo operativo y dirección, traduciendo datos en recomendaciones accionables.</li>
+      </ul>
+      <span class="exp-badge">🏆 +20% ventas Q2 · Power BI implementado</span>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-period">Mayo 2020 – Agosto 2022</div>
+      <div class="exp-title">Analista de Gestión de Datos – GTR</div>
+      <div class="exp-company">Konecta Argentina · Buenos Aires · Remoto</div>
+      <ul class="exp-bullets">
+        <li>Administré cartera de cuentas corporativas del sector financiero con contacto directo con tomadores de decisión.</li>
+        <li>Monitoré métricas en tiempo real detectando desvíos y reduciendo incumplimientos mensuales en -30%.</li>
+        <li>Construí dashboards en Excel y Power BI para monitorear performance de cuentas y equipos.</li>
+        <li>Participé en ceremonias SCRUM y capacité equipos en productos financieros.</li>
+      </ul>
+      <span class="exp-badge">🏆 -30% incumplimientos · +20% productividad</span>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-period">Enero 2020 – Abril 2020</div>
+      <div class="exp-title">Asesora Comercial de Seguros</div>
+      <div class="exp-company">Madero Asesores de Seguros · Presencial</div>
+      <ul class="exp-bullets">
+        <li>Asesoré clientes en selección y contratación de seguros adaptando la oferta a cada perfil.</li>
+        <li>Gestioné cartera con foco en fidelización y captación de nuevos prospectos.</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-period">Mayo 2016 – Agosto 2019</div>
+      <div class="exp-title">Empleada Bancaria</div>
+      <div class="exp-company">Nuevo Banco del Chaco S.A. · Chaco</div>
+      <ul class="exp-bullets">
+        <li>Gestioné cartera de clientes bancarios identificando necesidades y recomendando productos financieros.</li>
+        <li>Apoyé equipo comercial en seguimiento de oportunidades y generación de leads.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section class="projects" id="proyectos">
+  <div class="section-tag">// 03 · Proyectos</div>
+  <h2 class="section-title">Proyectos destacados</h2>
+  <p class="section-sub">Trabajo real y académico que demuestra mis capacidades analíticas aplicadas a problemas de negocio.</p>
+  <div class="projects-grid">
+    <div class="project-card featured">
+      <div class="project-visual">
+        <div class="mini-dash">
+          <div class="dash-header">
+            <span class="dash-header-text">TABLERO DE AUTORIZACIONES · SEPT 2021</span>
+            <span class="dash-header-text" style="color:rgba(255,255,255,0.3)">Power BI</span>
+          </div>
+          <div class="dash-kpis">
+            <div class="dash-kpi"><div class="dash-kpi-val">19.7K</div><div class="dash-kpi-lbl">Clientes</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-val">38.7K</div><div class="dash-kpi-lbl">Autorizac.</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-val">$2.4M</div><div class="dash-kpi-lbl">Monto Total</div></div>
+          </div>
+          <div class="dash-chart">
+            <div style="font-size:8px;color:rgba(255,255,255,0.3);font-family:'DM Mono',monospace;margin-bottom:6px;">AUTORIZACIONES POR DÍA</div>
+            <div class="chart-bars" id="miniChart"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+            <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:8px;">
+              <div style="font-size:7px;color:rgba(255,255,255,0.3);font-family:'DM Mono',monospace;margin-bottom:4px;">SUCURSALES TOP</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.6);">Casa Central · $148M</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.4);">SAFE Rosario · $67M</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.4);">SAFE San Carlos · $51M</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:8px;">
+              <div style="font-size:7px;color:rgba(255,255,255,0.3);font-family:'DM Mono',monospace;margin-bottom:4px;">CLIENTES NUEVOS</div>
+              <div style="font-size:22px;font-weight:700;color:#2ABFAA;font-family:'DM Mono',monospace;">8.353</div>
+              <div style="font-size:8px;color:rgba(255,255,255,0.3);">42% del total</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-tag">Power BI · Coderhouse · 2022</div>
+        <h3 class="project-title">Tablero de Autorizaciones de Préstamos y Créditos</h3>
+        <p class="project-desc">Dashboard completo para una entidad financiera no bancaria. Modelo relacional de 8 tablas, medidas DAX avanzadas con scoring de clientes, 4 vistas interactivas y análisis en tiempo real para mandos medios.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Power BI</span>
+          <span class="stack-tag">Power Query</span>
+          <span class="stack-tag">DAX</span>
+          <span class="stack-tag">SQL</span>
+          <span class="stack-tag">Modelado relacional</span>
+        </div>
+        <div class="project-metrics">
+          <div class="metric"><div class="metric-val">8</div><div class="metric-lbl">Tablas</div></div>
+          <div class="metric"><div class="metric-val">4</div><div class="metric-lbl">Vistas</div></div>
+          <div class="metric"><div class="metric-val">19K</div><div class="metric-lbl">Clientes</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-visual" style="min-height:160px;padding:20px;">
+        <div style="font-size:10px;color:var(--teal);font-family:'DM Mono',monospace;margin-bottom:12px;">DASHBOARD COMERCIAL · 2024</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+          <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:10px;text-align:center;">
+            <div style="font-size:22px;font-weight:700;color:#2ABFAA;font-family:'DM Mono',monospace;">+20%</div>
+            <div style="font-size:8px;color:rgba(255,255,255,0.4);text-transform:uppercase;">Ventas Q2</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:10px;text-align:center;">
+            <div style="font-size:22px;font-weight:700;color:#2ABFAA;font-family:'DM Mono',monospace;">94%</div>
+            <div style="font-size:8px;color:rgba(255,255,255,0.4);text-transform:uppercase;">KPI Cumpl.</div>
+          </div>
+        </div>
+        <svg viewBox="0 0 200 60" style="width:100%;height:60px;">
+          <polyline points="0,50 30,35 60,40 90,20 120,25 150,10 200,15" fill="none" stroke="#2ABFAA" stroke-width="2" stroke-linecap="round"/>
+          <polyline points="0,55 30,48 60,52 90,40 120,42 150,30 200,35" fill="none" stroke="rgba(107,122,141,0.5)" stroke-width="1.5" stroke-dasharray="4,2"/>
+        </svg>
+      </div>
+      <div class="project-info">
+        <div class="project-tag">Excel · Power BI · 2024</div>
+        <h3 class="project-title">Dashboard Comercial KPIs</h3>
+        <p class="project-desc">Monitoreo de ventas mensuales, distribución por canal, cumplimiento de KPIs y tabla de cuentas activas para equipo comercial.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Excel</span>
+          <span class="stack-tag">Power BI</span>
+          <span class="stack-tag">Google Sheets</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-visual" style="min-height:160px;padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+        <div style="font-size:48px;margin-bottom:12px;">🐍</div>
+        <div style="font-size:11px;color:var(--teal);font-family:'DM Mono',monospace;text-align:center;">DATA SCIENCE · EN PROGRESO</div>
+        <div style="margin-top:16px;width:100%;">
+          <div style="display:flex;justify-content:space-between;font-size:9px;color:rgba(255,255,255,0.4);font-family:'DM Mono',monospace;margin-bottom:4px;"><span>Progreso estimado</span><span>65%</span></div>
+          <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;">
+            <div style="width:65%;height:100%;background:var(--teal);border-radius:10px;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-tag">Python · Humai · 2025</div>
+        <h3 class="project-title">Proyecto Final Data Science</h3>
+        <p class="project-desc">En desarrollo. Análisis predictivo con Python aplicando Pandas, NumPy y modelado estadístico. Egreso estimado: octubre 2025.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Pandas</span>
+          <span class="stack-tag">NumPy</span>
+          <span class="stack-tag">Scikit-learn</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD INTERACTIVO -->
+<section class="dashboard-section" id="dashboard">
+  <div class="section-tag" style="color:var(--teal)">// 04 · Dashboard en vivo</div>
+  <h2 class="section-title">Dashboard Comercial</h2>
+  <p class="section-sub">Ejemplo de tablero de ventas y KPIs con datos ficticios ilustrativos.</p>
+  <div class="dashboard-container">
+    <div class="dash-top-bar">
+      <div class="dash-title-bar">📊 Dashboard de Ventas · Q2 2024</div>
+      <div class="dash-filters">
+        <div class="dash-filter active" onclick="filterDash(this,'todos')">Todos</div>
+        <div class="dash-filter" onclick="filterDash(this,'q1')">Q1</div>
+        <div class="dash-filter" onclick="filterDash(this,'q2')">Q2</div>
+      </div>
+    </div>
+    <div class="dash-body">
+      <div class="dash-kpi-row">
+        <div class="full-kpi-card">
+          <div class="fkpi-label">Ventas Totales</div>
+          <div class="fkpi-value">$350K</div>
+          <div class="fkpi-delta">↑ +20% vs Q1</div>
+        </div>
+        <div class="full-kpi-card">
+          <div class="fkpi-label">Conversión</div>
+          <div class="fkpi-value">38%</div>
+          <div class="fkpi-delta">↑ +5pts</div>
+        </div>
+        <div class="full-kpi-card">
+          <div class="fkpi-label">Cumpl. KPI</div>
+          <div class="fkpi-value">94%</div>
+          <div class="fkpi-delta">↑ +12pts</div>
+        </div>
+        <div class="full-kpi-card">
+          <div class="fkpi-label">Satisfacción</div>
+          <div class="fkpi-value">96%</div>
+          <div class="fkpi-delta">↑ +4pts</div>
+        </div>
+      </div>
+      <div class="dash-charts-row">
+        <div class="dash-chart-card">
+          <div class="dcc-title">Evolución de ventas 2023 vs 2024</div>
+          <div class="bar-chart-full" id="fullBarChart"></div>
+        </div>
+        <div class="dash-chart-card">
+          <div class="dcc-title">Canales de venta</div>
+          <div class="donut-wrap-full">
+            <svg width="100" height="100" viewBox="0 0 100 100" style="transform:rotate(-90deg)">
+              <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="12"/>
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#1B2A4A" stroke-width="12" stroke-dasharray="100.5 138.5"/>
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#2ABFAA" stroke-width="12" stroke-dasharray="71.7 167.3" stroke-dashoffset="-100.5"/>
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#6B7A8D" stroke-width="12" stroke-dasharray="67 172" stroke-dashoffset="-172.2"/>
+            </svg>
+            <div class="donut-legend-full">
+              <div class="dl-item"><div class="dl-left"><div class="dl-dot" style="background:#2ABFAA"></div>Digital</div><div class="dl-val">42%</div></div>
+              <div class="dl-item"><div class="dl-left"><div class="dl-dot" style="background:#1B2A4A;border:1px solid rgba(255,255,255,0.2)"></div>Directo</div><div class="dl-val">30%</div></div>
+              <div class="dl-item"><div class="dl-left"><div class="dl-dot" style="background:#6B7A8D"></div>Referidos</div><div class="dl-val">28%</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dash-bottom-row">
+        <div class="dash-chart-card">
+          <div class="dcc-title">Cumplimiento de indicadores</div>
+          <div class="progress-list-full">
+            <div class="pf-item"><div class="pf-header"><span class="pf-name">Objetivo de Ventas</span><span class="pf-pct">94%</span></div><div class="pf-track"><div class="pf-fill" style="width:94%"></div></div></div>
+            <div class="pf-item"><div class="pf-header"><span class="pf-name">Retención de Cuentas</span><span class="pf-pct">87%</span></div><div class="pf-track"><div class="pf-fill" style="width:87%;background:#1B2A4A"></div></div></div>
+            <div class="pf-item"><div class="pf-header"><span class="pf-name">Nuevos Contactos</span><span class="pf-pct">71%</span></div><div class="pf-track"><div class="pf-fill" style="width:71%;background:#F39C12"></div></div></div>
+            <div class="pf-item"><div class="pf-header"><span class="pf-name">Satisfacción Cliente</span><span class="pf-pct">96%</span></div><div class="pf-track"><div class="pf-fill" style="width:96%"></div></div></div>
+          </div>
+        </div>
+        <div class="dash-chart-card">
+          <div class="dcc-title">Top cuentas · mes actual</div>
+          <table class="mini-table-full">
+            <thead><tr><th>Cuenta</th><th>Ventas</th><th>Estado</th></tr></thead>
+            <tbody>
+              <tr><td>Cuenta A</td><td>$48.200</td><td><span class="status"><span class="status-dot2" style="background:#27AE60"></span>En meta</span></td></tr>
+              <tr><td>Cuenta B</td><td>$37.500</td><td><span class="status"><span class="status-dot2" style="background:#27AE60"></span>En meta</span></td></tr>
+              <tr><td>Cuenta C</td><td>$29.100</td><td><span class="status"><span class="status-dot2" style="background:#F39C12"></span>En proceso</span></td></tr>
+              <tr><td>Cuenta D</td><td>$21.800</td><td><span class="status"><span class="status-dot2" style="background:#F39C12"></span>En proceso</span></td></tr>
+              <tr><td>Cuenta E</td><td>$14.300</td><td><span class="status"><span class="status-dot2" style="background:#E74C3C"></span>Bajo meta</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCACIÓN -->
+<section class="education" id="educacion">
+  <div class="section-tag">// 05 · Formación</div>
+  <h2 class="section-title">Educación y certificaciones</h2>
+  <p class="section-sub">Formación técnica orientada a datos, negocios digitales y gestión ágil de proyectos.</p>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-icon">🐍</div>
+      <div>
+        <div class="edu-year">EN CURSO · 2025</div>
+        <div class="edu-title">Data Science con Python</div>
+        <div class="edu-inst">Humai</div>
+        <span class="edu-status status-active">En curso · Egreso oct. 2025</span>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">📊</div>
+      <div>
+        <div class="edu-year">2021</div>
+        <div class="edu-title">Data Analytics</div>
+        <div class="edu-inst">Coderhouse</div>
+        <span class="edu-status status-done">Graduada</span>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">⚡</div>
+      <div>
+        <div class="edu-year">2023</div>
+        <div class="edu-title">Metodologías Ágiles</div>
+        <div class="edu-inst">Axon Training</div>
+        <span class="edu-status status-done">Graduada</span>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">🏦</div>
+      <div>
+        <div class="edu-year">2016</div>
+        <div class="edu-title">Técnica Superior · Adm. y Comerc. de Seguros</div>
+        <div class="edu-inst">Instituto Paulo Freire U.E.P N°165</div>
+        <span class="edu-status status-done">Graduada</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="section-tag" style="color:var(--teal)">// 06 · Contacto</div>
+  <h2 class="section-title">¿Hablamos?</h2>
+  <p class="section-sub">Abierta a oportunidades en Análisis de Datos, Análisis Comercial y roles donde los datos sean el motor de las decisiones.</p>
+  <div class="contact-cards">
+    <a href="mailto:dana.alsina.lee93@gmail.com" class="contact-card">
+      <div class="cc-icon">📧</div>
+      <div class="cc-label">Email</div>
+      <div class="cc-value">dana.alsina.lee93@gmail.com</div>
+    </a>
+    <a href="tel:+5491124874139" class="contact-card">
+      <div class="cc-icon">📱</div>
+      <div class="cc-label">Teléfono</div>
+      <div class="cc-value">+54 9 11 2487-4139</div>
+    </a>
+    <a href="#" class="contact-card">
+      <div class="cc-icon">💼</div>
+      <div class="cc-label">LinkedIn</div>
+      <div class="cc-value">Dana Alsina Lee</div>
+    </a>
+    <a href="#" class="contact-card">
+      <div class="cc-icon">📍</div>
+      <div class="cc-label">Ubicación</div>
+      <div class="cc-value">Buenos Aires, Argentina</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  Dana Alsina Lee · Portfolio 2024 · Supervisora de Ventas & Analista de Datos · Buenos Aires
+</footer>
+
+<script>
+// Intersection Observer para animaciones
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.exp-item').forEach(el => observer.observe(el));
+
+// Mini chart hero
+const miniData = [1.3, 1.7, 1.9, 2.2, 1.9, 0.4, 0.8, 1.1, 1.7, 0.0, 0.5, 0.9];
+const miniChart = document.getElementById('miniChart');
+if (miniChart) {
+  const max = Math.max(...miniData);
+  miniData.forEach((v, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'bar-wrap';
+    const bar = document.createElement('div');
+    bar.className = 'bar ' + (v === max ? 'b2' : 'b1');
+    bar.style.height = (v / max * 52) + 'px';
+    wrap.appendChild(bar);
+    miniChart.appendChild(wrap);
+  });
+}
+
+// Full bar chart
+const months = ['ENE','FEB','MAR','ABR','MAY','JUN'];
+const v2023  = [30,38,41,50,55,68];
+const v2024  = [38,45,52,61,70,84];
+const fullChart = document.getElementById('fullBarChart');
+if (fullChart) {
+  const maxV = Math.max(...v2024);
+  months.forEach((m, i) => {
+    const g = document.createElement('div');
+    g.style.cssText = 'flex:1;display:flex;flex-direction:column;align-items:center;gap:0;height:100%;justify-content:flex-end;';
+    const bars = document.createElement('div');
+    bars.style.cssText = 'display:flex;gap:2px;align-items:flex-end;width:100%;justify-content:center;';
+    const b1 = document.createElement('div');
+    b1.className = 'bcf-bar';
+    b1.style.cssText = `height:${v2023[i]/maxV*88}px;background:rgba(107,122,141,0.5);flex:1;border-radius:3px 3px 0 0;`;
+    const b2 = document.createElement('div');
+    b2.className = 'bcf-bar';
+    b2.style.cssText = `height:${v2024[i]/maxV*88}px;background:#2ABFAA;flex:1;border-radius:3px 3px 0 0;`;
+    bars.appendChild(b1); bars.appendChild(b2);
+    const lbl = document.createElement('div');
+    lbl.className = 'bcf-label';
+    lbl.textContent = m;
+    g.appendChild(bars); g.appendChild(lbl);
+    fullChart.appendChild(g);
+  });
+}
+
+// Filter
+function filterDash(el, period) {
+  document.querySelectorAll('.dash-filter').forEach(f => f.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Nav active
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('section[id], .dashboard-section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#'+current ? '#2ABFAA' : '';
+  });
+});
+</script>
+</body>
+</html>
