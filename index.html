@@ -2464,7 +2464,7 @@ ikhMWiiimI//2Q==" alt="Dana Alsina Lee">
           <div class="progress-list-full" id="progress-list">
             <div class="pf-item">
               <div class="pf-header"><span class="pf-name">Objetivo de Ventas</span><span class="pf-pct" id="prog-ventas">89%</span></div>
-              <div class="pf-track"><div class="pf-fill" id="prog-ventas-bar" style="width:89%"></div></div>
+              <div class="pf-track"><div class="pf-fill" id="prog-ventas-bar" style="width:89%;background:#2ABFAA"></div></div>
             </div>
             <div class="pf-item">
               <div class="pf-header"><span class="pf-name">Retención de Cuentas</span><span class="pf-pct" id="prog-ret">84%</span></div>
@@ -2476,7 +2476,7 @@ ikhMWiiimI//2Q==" alt="Dana Alsina Lee">
             </div>
             <div class="pf-item">
               <div class="pf-header"><span class="pf-name">Satisfacción Cliente</span><span class="pf-pct" id="prog-sat">95%</span></div>
-              <div class="pf-track"><div class="pf-fill" id="prog-sat-bar" style="width:95%"></div></div>
+              <div class="pf-track"><div class="pf-fill" id="prog-sat-bar" style="width:95%;background:#2ABFAA"></div></div>
             </div>
           </div>
         </div>
@@ -2760,10 +2760,10 @@ function animateKPI(id, newVal) {
 function updateProgress(period) {
   const p = dashData[period].progress;
   const items = [
-    { pct: 'prog-ventas', bar: 'prog-ventas-bar', val: p.ventas },
-    { pct: 'prog-ret',    bar: 'prog-ret-bar',    val: p.ret, color: '#8B9AB0' },
-    { pct: 'prog-new',    bar: 'prog-new-bar',    val: p.new, color: '#2563EB' },
-    { pct: 'prog-sat',    bar: 'prog-sat-bar',    val: p.sat },
+    { pct: 'prog-ventas', bar: 'prog-ventas-bar', val: p.ventas, color: '#2ABFAA' },
+    { pct: 'prog-ret',    bar: 'prog-ret-bar',    val: p.ret,    color: '#8B9AB0' },
+    { pct: 'prog-new',    bar: 'prog-new-bar',    val: p.new,    color: '#2563EB' },
+    { pct: 'prog-sat',    bar: 'prog-sat-bar',    val: p.sat,    color: '#2ABFAA' },
   ];
   items.forEach(item => {
     const pctEl = document.getElementById(item.pct);
@@ -2856,15 +2856,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Flip card — click/touch para mobile
+  // Flip card — hover desktop + click mobile con auto-return 6s
   const flipCard = document.querySelector('.flip-card');
+  let flipTimer = null;
+
+  function unflip() {
+    if (flipCard) flipCard.classList.remove('flipped');
+    clearTimeout(flipTimer);
+  }
+
   if (flipCard) {
+    // Click / touch: girar y volver en 6 segundos
     flipCard.addEventListener('click', () => {
-      flipCard.classList.toggle('flipped');
+      const isFlipped = flipCard.classList.contains('flipped');
+      if (isFlipped) {
+        unflip();
+      } else {
+        flipCard.classList.add('flipped');
+        clearTimeout(flipTimer);
+        flipTimer = setTimeout(unflip, 6000);
+      }
     });
-    // Auto-voltear de vuelta al salir del area en desktop
+
+    // Desktop: al salir del hover volver inmediatamente
     flipCard.addEventListener('mouseleave', () => {
-      flipCard.classList.remove('flipped');
+      unflip();
     });
   }
 
