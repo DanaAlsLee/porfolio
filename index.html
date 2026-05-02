@@ -205,7 +205,6 @@ nav {
   transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
 }
-.flip-card:hover .flip-card-inner,
 .flip-card.flipped .flip-card-inner {
   transform: rotateY(180deg);
 }
@@ -918,6 +917,68 @@ footer {
   .ai-grid { grid-template-columns: 1fr 1fr; }
 }
 
+
+/* ── HAMBURGER & MOBILE MENU ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 101;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 56px; left: 0; right: 0;
+  background: rgba(15,26,48,0.98);
+  backdrop-filter: blur(16px);
+  z-index: 99;
+  flex-direction: column;
+  padding: 16px 0 24px;
+  border-bottom: 1px solid rgba(42,191,170,0.2);
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.mobile-menu.open {
+  display: flex;
+  transform: translateY(0);
+  opacity: 1;
+}
+.mobile-menu a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 14px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+.mobile-menu a:hover,
+.mobile-menu a:active { color: var(--teal); background: rgba(42,191,170,0.06); padding-left: 36px; }
+.mobile-menu a:last-child { border-bottom: none; }
+
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-links  { display: none !important; }
+}
+
 /* ── RESPONSIVE ── */
 
 @media (max-width: 1100px) {
@@ -1056,16 +1117,28 @@ footer {
 <!-- NAV -->
 <nav>
   <div class="nav-logo">Dana <span>Alsina Lee</span></div>
-  <div class="nav-links">
-    <a href="#sobre-mi">Sobre mí</a>
-    <a href="#experiencia">Experiencia</a>
-    <a href="#proyectos">Proyectos</a>
-    <a href="#dashboard">Dashboard</a>
-    <a href="#ia">IA</a>
-    <a href="#educacion">Formación</a>
-    <a href="#contacto">Contacto</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#sobre-mi" onclick="closeMenu()">Sobre mí</a>
+    <a href="#experiencia" onclick="closeMenu()">Experiencia</a>
+    <a href="#proyectos" onclick="closeMenu()">Proyectos</a>
+    <a href="#dashboard" onclick="closeMenu()">Dashboard</a>
+    <a href="#ia" onclick="closeMenu()">IA</a>
+    <a href="#educacion" onclick="closeMenu()">Formación</a>
+    <a href="#contacto" onclick="closeMenu()">Contacto</a>
   </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre-mi" onclick="closeMenu()">Sobre mí</a>
+  <a href="#experiencia" onclick="closeMenu()">Experiencia</a>
+  <a href="#proyectos" onclick="closeMenu()">Proyectos</a>
+  <a href="#dashboard" onclick="closeMenu()">Dashboard</a>
+  <a href="#ia" onclick="closeMenu()">IA</a>
+  <a href="#educacion" onclick="closeMenu()">Formación</a>
+  <a href="#contacto" onclick="closeMenu()">Contacto</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="inicio">
@@ -2446,7 +2519,7 @@ ikhMWiiimI//2Q==" alt="Dana Alsina Lee">
               <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="12"/>
               <circle cx="50" cy="50" r="38" fill="none" stroke="#2ABFAA" stroke-width="12" stroke-dasharray="100.5 138.5"/>
               <circle cx="50" cy="50" r="38" fill="none" stroke="#1B2A4A" stroke-width="12" stroke-dasharray="71.7 167.3" stroke-dashoffset="-100.5"/>
-              <circle cx="50" cy="50" r="38" fill="none" stroke="#1F95FF" stroke-width="12" stroke-dasharray="67 172" stroke-dashoffset="-172.2"/>
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#6B7A8D" stroke-width="12" stroke-dasharray="67 172" stroke-dashoffset="-172.2"/>
             </svg>
             <div class="donut-legend-full">
               <div class="dl-item"><div class="dl-left"><div class="dl-dot" style="background:#2ABFAA"></div>Digital</div><div class="dl-val">42%</div></div>
@@ -2856,33 +2929,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Flip card — hover desktop + click mobile con auto-return 6s
+  // Flip card — funciona en desktop (hover) y mobile (touch/click)
   const flipCard = document.querySelector('.flip-card');
   let flipTimer = null;
 
-  function unflip() {
-    if (flipCard) flipCard.classList.remove('flipped');
+  function doFlip() {
+    if (!flipCard) return;
+    flipCard.classList.add('flipped');
+    clearTimeout(flipTimer);
+    flipTimer = setTimeout(doUnflip, 6000);
+  }
+
+  function doUnflip() {
+    if (!flipCard) return;
+    flipCard.classList.remove('flipped');
     clearTimeout(flipTimer);
   }
 
   if (flipCard) {
-    // Click / touch: girar y volver en 6 segundos
-    flipCard.addEventListener('click', () => {
+    // TOUCH (mobile) — touchstart para respuesta inmediata
+    flipCard.addEventListener('touchstart', (e) => {
+      e.preventDefault(); // evita el delay de 300ms del navegador
       const isFlipped = flipCard.classList.contains('flipped');
-      if (isFlipped) {
-        unflip();
-      } else {
-        flipCard.classList.add('flipped');
-        clearTimeout(flipTimer);
-        flipTimer = setTimeout(unflip, 6000);
-      }
+      if (isFlipped) { doUnflip(); } else { doFlip(); }
+    }, { passive: false });
+
+    // CLICK (desktop y fallback mobile)
+    flipCard.addEventListener('click', (e) => {
+      // En mobile touchstart ya lo maneja, evitar doble disparo
+      if (e.sourceCapabilities && e.sourceCapabilities.firesTouchEvents) return;
+      const isFlipped = flipCard.classList.contains('flipped');
+      if (isFlipped) { doUnflip(); } else { doFlip(); }
     });
 
-    // Desktop: al salir del hover volver inmediatamente
+    // HOVER (solo desktop) — mouseenter gira, mouseleave vuelve
+    flipCard.addEventListener('mouseenter', () => {
+      if (window.matchMedia('(hover: hover)').matches) doFlip();
+    });
     flipCard.addEventListener('mouseleave', () => {
-      unflip();
+      if (window.matchMedia('(hover: hover)').matches) doUnflip();
     });
   }
+
+
+  // Menú hamburguesa mobile
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn  = document.getElementById('hamburger');
+    if (!menu || !btn) return;
+    menu.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+  function closeMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn  = document.getElementById('hamburger');
+    if (menu) menu.classList.remove('open');
+    if (btn)  btn.classList.remove('open');
+  }
+  // Cerrar menú al hacer scroll
+  window.addEventListener('scroll', closeMenu, { passive: true });
 
   // Nav active on scroll
   window.addEventListener('scroll', () => {
